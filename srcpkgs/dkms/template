@@ -1,0 +1,39 @@
+# Template file for 'dkms'
+pkgname=dkms
+version=3.0.2
+revision=1
+conf_files="/etc/dkms/framework.conf"
+depends="bash kmod gcc make coreutils"
+short_desc="Dynamic Kernel Modules System"
+maintainer="Orphaned <orphan@voidlinux.org>"
+license="GPL-2.0-or-later"
+homepage="https://github.com/dell/dkms"
+distfiles="${homepage}/archive/v${version}.tar.gz"
+checksum=c33114a50158165b57904e30ba859e26f0678f79577c565598060cef885ec8de
+
+case "$XBPS_TARGET_MACHINE" in
+	# Too many competing kernels for arm* to depend on linux-headers
+	arm*) ;;
+	*) depends+=" linux-headers" ;;
+esac
+
+if [ "$CROSS_BUILD" ]; then
+	depends+=" openssl-devel gmp-devel libada-devel libmpc-devel flex"
+fi
+
+do_build() {
+	make dkms dkms.8
+}
+
+do_install() {
+	# We are only interested in the bare minimum.
+	vbin dkms
+	vman dkms.8
+	echo "${version}" > dkms_dbversion
+	vinstall dkms_dbversion 644 var/lib/dkms
+	vcompletion dkms.bash-completion bash dkms
+	vinstall dkms_framework.conf 644 etc/dkms framework.conf
+	# Kernel hooks.
+	vinstall ${FILESDIR}/kernel.d/dkms.postinst 754 etc/kernel.d/post-install 10-dkms
+	vinstall ${FILESDIR}/kernel.d/dkms.prerm 754 etc/kernel.d/pre-remove 10-dkms
+}

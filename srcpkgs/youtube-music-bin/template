@@ -1,0 +1,21 @@
+# Template file for 'youtube-music-bin'
+pkgname=youtube-music-bin
+version=1.14.0
+revision=1
+archs="x86_64"
+create_wrksrc=yes
+hostmakedepends="rpmextract"
+depends="gtk+3 nss"
+short_desc="YouTube Music Desktop App bundled with custom plugins (and built-in ad blocker / downloader)"
+maintainer="Orphaned <orphan@voidlinux.org>"
+license="MIT"
+homepage="https://th-ch.github.io/youtube-music"
+distfiles="https://github.com/th-ch/youtube-music/releases/download/v${version}/youtube-music-${version}.x86_64.rpm"
+checksum=d79e63d0f0c0b041934aa1b2cb40cb224acfbb570d78a5e835d520670b61b9f1
+
+do_install() {
+	vmkdir /usr/bin
+	# Copy files
+	vcopy "*" /
+	ln -sr "${DESTDIR}/opt/YouTube Music/youtube-music" ${DESTDIR}/usr/bin/youtube-music
+}

@@ -1,0 +1,16 @@
+# Template file for 'mpd-mpris'
+pkgname=mpd-mpris
+version=0.3.1
+revision=1
+archs="x86_64"
+create_wrksrc=yes
+short_desc="An implementation of the MPRIS protocol for MPD."
+maintainer="Orphaned <orphan@voidlinux.org>"
+license="MIT"
+homepage="https://github.com/natsukagami/mpd-mpris"
+distfiles="https://github.com/natsukagami/mpd-mpris/releases/download/v${version}/${pkgname}_${version}_Linux_x86_64.tar.gz"
+checksum=2971d934570c007b1950210243e1039e996485bfcf1a8839c64562ea283a221e
+
+do_install() {
+	vbin mpd-mpris
+}

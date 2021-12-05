@@ -1,0 +1,27 @@
+# Template file for 'microsoft-edge-stable'
+pkgname=microsoft-edge-stable
+version=96.0.1054.43
+revision=1
+archs="x86_64"
+create_wrksrc=yes
+hostmakedepends="rpmextract"
+short_desc="Web browser from MS"
+maintainer="mobinmob <mobinmob@disroot.org>"
+# License is available from inside the browser - edge://terms/
+license="custom:proprietary" #no vlicense
+homepage="https://www.microsoft.com/en-us/edge"
+distfiles="https://packages.microsoft.com/yumrepos/edge/microsoft-edge-stable-${version}-1.x86_64.rpm"
+checksum=72d5cd90555e1da8e66f8ececbef9dd57e2e621e9c7dd2791d2238fe3922b4b6
+
+post_extract() {
+	# Launches MS Edge with flags specified in $XDG_CONFIG_HOME/microsoft-edge-flags.conf
+	cp "${FILESDIR}/microsoft-edge-stable" ${wrksrc}/opt/microsoft/msedge/
+}
+
+do_install() {
+	# Copy files
+	vcopy "*" /
+	
+	# Remove cronjob
+	rm -f "${DESTDIR}/etc/cron.daily/microsoft-edge"
+}
