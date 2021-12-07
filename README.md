@@ -10,6 +10,7 @@
 
 ### Use
 **Setting up xbps-src**
+<br>
 Clone this repo & clone the void-packages repo from github.
 ```sh
 git clone --depth 1 https://github.com/void-linux/void-packages
@@ -24,7 +25,7 @@ cd void-packages && ./xbps-src binary-bootstrap
 ```sh
 ./xbps-src pkg <pkgname>
 ```
-For more info on [building-packages](https://github.com/void-linux/void-packages#building-packages)
+For more info on [building-packages](https://github.com/void-linux/void-packages#building-packages)<br><br>PR welcome!<br>Issues and request are welcome =)
 
 ## template-repo
 
