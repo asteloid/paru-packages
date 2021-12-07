@@ -1,0 +1,58 @@
+# Template file for 'desmume-git'
+pkgname=desmume-git
+_pkgname=desmume
+version=0.9.12
+revision=2
+_githash=b4080b2cae2f8e2700e318b97e369915e8995796
+wrksrc="desmume-${_githash}"
+hostmakedepends="desktop-file-utils pkg-config intltool dos2unix meson cmake"
+makedepends="libglvnd SDL2-devel glib-devel libpcap-devel soundtouch-devel alsa-lib-devel gtk+3-devel agg-devel zziplib-devel glu-devel"
+depends="glib SDL2 zlib gtk+3 libpcap libpng"
+short_desc="Nintendo DS emulator"
+maintainer="Orphaned <orphan@voidlinux.org>"
+license="GPL-2.0-or-later"
+homepage="http://www.desmume.org"
+distfiles="https://github.com/TASEmulators/desmume/archive/${_githash}.tar.gz"
+checksum=25d4fbbd54b8ce8c24f49f9bf5e411017669f2cabad605ef4581427194888175
+
+post_extract() {
+	# git eats CRLFs, so the patch has wrong line ending. Instead
+	# convert the target file to LF-only.
+	cd $_pkgname
+	dos2unix src/MMU_timing.h
+}
+
+pre_build() {
+	mkdir -p out
+	meson setup build \
+	        $_pkgname/src/frontend/posix \
+	        --prefix=${PWD}/out \
+	        --buildtype=release \
+	        --optimization=2 \
+	        --strip \
+	        -Dc_args='-minline-all-stringops -D_FORTIFY_SOURCE=2' \
+	        -Db_pie=true \
+	        -Dopenal=false \
+	        -Dwifi=true
+}
+
+do_build() {
+	ninja -C build
+	cd build
+	meson install
+}
+
+do_install() {
+	vmkdir /usr
+	cp -r out/* ${DESTDIR}/usr/
+}
+
+post_install() {
+	# locales is only used for glade, but it's never built
+	# The configure script set GETTEXT_PACKAGE to empty string
+	# this it's never usable.
+	# /usr/lib/locale/nb/LC_MESSAGES/.mo
+	# /usr/share/locale/nb/LC_MESSAGES/.mo
+	rm -rf $DESTDIR/usr/lib/locale
+	rm -rf $DESTDIR/usr/share/locale
+}
