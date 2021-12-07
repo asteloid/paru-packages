@@ -33,3 +33,7 @@ For more info on [building-packages](https://github.com/void-linux/void-packages
  - xanmod-kernel : https://notabug.org/Marcoapc/voidxanmodK
  - picom-ibhagwan : https://github.com/ibhagwan/picom-ibhagwan-template
  - Ungoogled Chromium : https://github.com/DAINRA/ungoogled-chromium-void
+ - faenrir/void-extras : https://github.com/faenrir/void-extras
+ - not-void/nvoid : https://github.com/not-void/nvoid
+ - natrys/voidlinux-builder : https://github.com/natrys/voidlinux-builder
+ - sug0/voided-packages : https://github.com/sug0/voided-packages
