@@ -1,0 +1,17 @@
+# Template file for 'otf-liga-sfmono-nerd'
+pkgname=otf-liga-sfmono-nerd
+_githash=83d887c6ec4989897fff19131a5de84766ecfdc9
+version=20210730
+revision=1
+wrksrc=SFMono-Nerd-Font-Ligaturized-${_githash}
+short_desc="Apple's SFMono font nerd-font patched and ligaturized."
+maintainer="parutalker <93087312+parutalker@users.noreply.github.com>"
+license="custom:Custom"
+homepage="https://github.com/shaunsingh/SFMono-Nerd-Font-Ligaturized"
+distfiles="https://github.com/shaunsingh/SFMono-Nerd-Font-Ligaturized/archive/${_githash}.tar.gz"
+checksum=26b39e1f36d3cd8b486e67c002918de9396b6dc8d6e8aeacb2ed7bcfc21f99da
+
+do_install() {
+	vmkdir /usr/share/fonts/liga-sfmono
+	vcopy *.otf /usr/share/fonts/liga-sfmono
+}
