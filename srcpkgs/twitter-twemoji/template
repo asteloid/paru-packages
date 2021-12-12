@@ -2,7 +2,6 @@
 pkgname=twitter-twemoji
 version=13.1.0
 revision=1
-archs="x86_64"
 create_wrksrc=yes
 hostmakedepends="rpmextract"
 short_desc="Twitter Emoji for everyone."
