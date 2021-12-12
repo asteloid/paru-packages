@@ -1,0 +1,17 @@
+# Template file for 'ttf-umeplus-cl'
+pkgname=ttf-umeplus-cl
+version=20180604
+revision=2
+wrksrc=umeplus-cl-fonts-20180604
+short_desc="UmePlus CL (CLassical style) fonts are modified Ume fonts for Japanese."
+maintainer="parutalker <93087312+parutalker@users.noreply.github.com>"
+license="MIT"
+homepage="https://twemoji.twitter.com"
+distfiles="https://osdn.dl.osdn.net/users/21/21735/umeplus-cl-fonts-${version}.tar.xz"
+checksum=2121b3d7a55639929a42d4e55af7ffbe29c6a3bf2f667f8c3562ca932424eb44
+
+do_install() {
+	vmkdir /usr/share/fonts/umeplus-cl
+	vcopy umeplus-cl-gothic.ttf /usr/share/fonts/umeplus-cl
+	vcopy umeplus-clp-gothic.ttf /usr/share/fonts/umeplus-cl
+}
