@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=LibreWolf
+GenericName=Web Browser
+Comment=LibreWolf Browser
+Categories=Network;WebBrowser;Security;
+Exec=/usr/lib/librewolf/./start-librewolf
+X-TorBrowser-ExecShell=/usr/lib/librewolf/./start-librewolf
+Icon=/usr/lib/librewolf/./browser/chrome/icons/default/default64.png
+StartupWMClass=LibreWolf

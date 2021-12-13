@@ -1,0 +1,34 @@
+# Template file for 'librewolf-bin'
+pkgname=librewolf-bin
+_pkgname=librewolf
+version=95.0
+revision=1
+archs="x86_64"
+create_wrksrc=yes
+hostmakedepends="tar"
+depends="dbus-glib ffmpeg gtk+3 nss nspr libXt"
+short_desc="Community-maintained fork of Firefox, focused on privacy, security and freedom."
+maintainer="parutalker <93087312+parutalker@users.noreply.github.com>"
+license="MPL-2.0"
+homepage="https://librewolf.net"
+distfiles="https://fresh.librewolf.io/${_pkgname}-${version}/${_pkgname}-${version}.en-US.ubuntu20.x86_64.deb"
+checksum=5214589abbbfabf37375de6110acdb6580c2d82b8bbbf686e9671735483ae482
+nostrip=yes
+
+do_extract() {
+	ar x ${XBPS_SRCDISTDIR}/${pkgname}-${version}/librewolf-95.0.en-US.ubuntu20.x86_64.deb
+	bsdtar xpvf data.tar.xz
+	mkdir -p usr/lib
+	# move ELF files from usr/share to usr/lib
+	mv usr/share/librewolf usr/lib/
+	rm usr/bin/librewolf
+}
+
+do_install() {
+	cp ${FILESDIR}/start-librewolf.desktop usr/lib/librewolf/
+	cp ${FILESDIR}/start-librewolf.desktop usr/share/applications/
+	vmkdir /usr/bin
+	# Copy files
+	cp -r usr ${DESTDIR}
+	vbin ${FILESDIR}/librewolf
+}
