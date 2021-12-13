@@ -1,0 +1,25 @@
+# Template file for 'deezer-bin'
+pkgname=deezer-bin
+_pkgname=deezer
+version=5.30.120
+revision=1
+archs="~*-musl"
+hostmakedepends="tar"
+depends="electron13"
+short_desc="A proprietary music streaming service."
+maintainer="Orphaned <orphan@voidlinux.org>"
+license="custom:'Copyright (c) 2006-2021 Deezer S.A.'"
+homepage="https://www.deezer.com"
+distfiles="https://builds.garudalinux.org/repos/chaotic-aur/x86_64/${_pkgname}-${version}-1-any.pkg.tar.zst"
+checksum=4b864a08366edeb9f73fdb1c2fae18755756427efd68279af8161411e13003d5
+
+do_extract() {
+	bsdtar -xf ${XBPS_SRCDISTDIR}/${pkgname}-${version}/${_pkgname}-${version}-1-any.pkg.tar.zst
+	# remove dot files
+	rm .BUILDINFO .MTREE .PKGINFO
+}
+
+do_install() {
+	# Copy files
+	vcopy "*" /
+}
