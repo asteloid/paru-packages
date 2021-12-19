@@ -1,6 +1,6 @@
 # Template file for 'linux5.15-xanmod-cjktty-uksm-tt'
 pkgname=linux5.15-xanmod-cjktty-uksm-tt
-version=5.15.7
+version=5.15.10
 revision=1
 _xanmod=1
 wrksrc="linux-${version}-xanmod${_xanmod}-tt"
@@ -9,7 +9,7 @@ maintainer="parutalker <93087312+parutalker@users.noreply.github.com>" # xanmod 
 license="GPL-2.0-only"
 homepage="http://www.xanmod.org/"
 distfiles="https://github.com/xanmod/linux/archive/${version}-xanmod${_xanmod}-tt.tar.gz"
-checksum=87e8635bd35bbd750452b0037ead94eaa0b68e44f2f658361e2ab288eaa7807b
+checksum=6b14d70b5ef4e6c07c087eea2ac33ef9e906374752bc2af1458f564ae6def788
 python_version=3
 patch_args="-Np1"
 
@@ -71,10 +71,11 @@ do_configure() {
 		mips*) arch=mips;;
 	esac
 
+	cp -f ${FILESDIR}/localversion localversion
+
 	if [ -f ${FILESDIR}/${subarch:-$arch}-dotconfig-custom ]; then
 		msg_normal "Detected a custom .config file for your arch, using it.\n"
 		cp -f ${FILESDIR}/${subarch:-$arch}-dotconfig-custom .config
-		cp -f ${FILESDIR}/localversion localversion
 		make CC=clang AS=clang LD=ld.lld AR=llvm-ar NM=llvm-nm STRIP=llvm-strip OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump HOSTCC=clang HOSTLD=ld.lld HOSTAR=llvm-ar ${makejobs} ARCH=$arch ${_args} oldconfig
 	elif [ -f ${FILESDIR}/${subarch:-$arch}-dotconfig ]; then
 		msg_normal "Detected a .config file for your arch, using it.\n"
@@ -84,11 +85,9 @@ do_configure() {
 	elif [ -f ${FILESDIR}/${XBPS_TARGET_MACHINE%%-musl}-dotconfig ]; then
 		msg_normal "Detected a .config file for your cpu family, using it.\n"
 		cp -f ${FILESDIR}/${XBPS_TARGET_MACHINE%%-musl}-dotconfig .config
-		cp -f ${FILESDIR}/localversion localversion
 		make CC=clang AS=clang LD=ld.lld AR=llvm-ar NM=llvm-nm STRIP=llvm-strip OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump HOSTCC=clang HOSTLD=ld.lld HOSTAR=llvm-ar ${makejobs} ARCH=$arch ${_args} oldconfig
 	else
 		msg_normal "Defaulting to 'allmodconfig'.\n"
-		cp -f ${FILESDIR}/localversion localversion
 		make CC=clang AS=clang LD=ld.lld AR=llvm-ar NM=llvm-nm STRIP=llvm-strip OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump HOSTCC=clang HOSTLD=ld.lld HOSTAR=llvm-ar ${makejobs} ARCH=$arch ${_args} allmodconfig
 	fi
 	# Always use our revision to CONFIG_LOCALVERSION to match our pkg version.
