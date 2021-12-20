@@ -1,3 +1,2 @@
 #!/bin/env bash
-exec /usr/lib/librewolf/librewolf "$@"
-EOF
+exec /usr/lib/librewolf-bin/librewolf "$@"
