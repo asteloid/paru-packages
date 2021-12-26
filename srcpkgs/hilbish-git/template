@@ -1,0 +1,37 @@
+# Template file for 'hilbish-git'
+pkgname=hilbish-git
+_pkgname=hilbish
+version=0.7.1.r50.g54689b7
+revision=1
+hostmakedepends="git go"
+makedepends="readline-devel"
+#checkdepends="xvfb-run"
+depends="lua-lunacolors-git lua-succulent-git"
+short_desc="The flower shell for Lua users"
+maintainer="parutalker <93087312+parutalker@users.noreply.github.com>"
+license="GPL-3.0-or-later"
+homepage="https://github.com/Rosettea/Hilbish"
+
+do_fetch() {
+	git clone --depth 1 https://github.com/Rosettea/Hilbish $wrksrc
+}
+
+do_configure() {
+	sed -i '\|/etc/shells|d' Makefile
+}
+
+do_build() {
+	export CGO_CPPFLAGS="${CPPFLAGS}"
+	export CGO_CFLAGS="${CFLAGS}"
+	export CGO_CXXFLAGS="${CXXFLAGS}"
+	export CGO_LDFLAGS="${LDFLAGS}"
+	export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"
+
+	make dev
+}
+
+do_install() {
+	DESTDIR="${DESTDIR}/" make install
+	vlicense LICENSE
+	vdoc README.md
+}
