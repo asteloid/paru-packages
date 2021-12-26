@@ -1,0 +1,21 @@
+# Template file for 'lua-lunacolors-git'
+pkgname=lua-lunacolors-git
+_pkgname=lunacolors
+version=r12.10c4692
+revision=1
+hostmakedepends="git"
+short_desc="ANSI colors library for Hilbish"
+maintainer="parutalker <93087312+parutalker@users.noreply.github.com>"
+license="BSD-3-Clause"
+homepage="https://github.com/Rosettea/Lunacolors"
+
+do_fetch() {
+	git clone --depth 1 https://github.com/Rosettea/Lunacolors $wrksrc
+}
+
+do_install() {
+	vmkdir usr/share/hilbish/libs/lunacolors
+	vcopy init.lua usr/share/hilbish/libs/${_pkgname}/
+	vlicense LICENSE
+	vdoc README.md
+}
