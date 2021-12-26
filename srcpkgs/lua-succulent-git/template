@@ -1,0 +1,21 @@
+# Template file for 'lua-succulent-git'
+pkgname=lua-succulent-git
+_pkgname=succulent
+version=r7.96dc95c
+revision=1
+hostmakedepends="git"
+short_desc="Lua functions and utilities for Hilbish"
+maintainer="parutalker <93087312+parutalker@users.noreply.github.com>"
+license="MIT"
+homepage="https://github.com/Rosettea/Succulent"
+
+do_fetch() {
+	git clone --depth 1 https://github.com/Rosettea/Succulent $wrksrc
+}
+
+do_install() {
+	vmkdir usr/share/hilbish/libs/succulent
+	vcopy init.lua usr/share/hilbish/libs/${_pkgname}/
+	vlicense LICENSE
+	vdoc README.md
+}
