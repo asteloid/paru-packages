@@ -1,6 +1,6 @@
 # Template file for 'kotatogram-desktop-bin'
 pkgname=kotatogram-desktop-bin
-version=1.4.5
+version=1.4.8
 revision=1
 archs="x86_64"
 wrksrc=Kotatogram
