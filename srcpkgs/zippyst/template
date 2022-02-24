@@ -1,0 +1,17 @@
+# Template file for 'zippyst'
+pkgname=zippyst
+version=3.0.1
+revision=1
+build_style=cargo
+make_install_args="--path=bin"
+hostmakedepends="openssl-devel"
+short_desc="ZippyShare direct link extractor"
+maintainer="parutalker <parutalker@pm.me>"
+license="MIT"
+homepage="https://github.com/scotow/zippyst"
+distfiles="https://github.com/scotow/zippyst/archive/${version}.tar.gz"
+checksum=e4b21bd336ea0eb140e8417113bfe38ef90296c1367f6ac586e433ff61b8e07e
+
+post_install() {
+	vlicense LICENSE
+}
