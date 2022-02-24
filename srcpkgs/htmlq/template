@@ -1,0 +1,15 @@
+# Template file for 'htmlq'
+pkgname=htmlq
+version=0.4.0
+revision=1
+build_style=cargo
+short_desc="Like jq, but for HTML"
+maintainer="parutalker <parutalker@pm.me>"
+license="MIT"
+homepage="https://github.com/mgdm/htmlq"
+distfiles="https://github.com/mgdm/htmlq/archive/v${version}.tar.gz"
+checksum=c2954c0fcb3ada664b14834646aa0a2c4268683cc51fd60d47a71a9f7e77d4b9
+
+post_install() {
+	vlicense LICENSE.md
+}
