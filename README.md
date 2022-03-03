@@ -25,7 +25,7 @@ cd void-packages && ./xbps-src binary-bootstrap
 ```sh
 ./xbps-src pkg <pkgname>
 ```
-For more info on [building-packages](https://github.com/void-linux/void-packages#building-packages)<br><br>PR welcome!<br>Issues and request are welcome =)
+For more info on [building-packages](https://github.com/void-linux/void-packages#building-packages)<br>
 
 ## template-repo
 
