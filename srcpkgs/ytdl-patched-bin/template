@@ -1,7 +1,7 @@
 # Template file for 'ytdl-patched-bin'
 pkgname=ytdl-patched-bin
-version=2022.02
-_ver=1645720009
+version=2022.03
+_ver=1646287479
 revision=1
 archs="x86_64"
 create_wrksrc=yes
@@ -11,7 +11,7 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="MIT"
 homepage="https://github.com/ytdl-patched/ytdl-patched"
 distfiles=https://github.com/ytdl-patched/ytdl-patched/releases/download/${_ver}/youtube-dl
-checksum=ca44018e1aaa0d57c2b379184014fbfabd8cc85ff879b7f28b3e87b3befde975
+checksum=80d4719437c25c0c3807b699eaae568ba40503b96e07f373c8144d856aa65cbf
 skip_extraction="youtube-dl"
 
 post_extract() {
