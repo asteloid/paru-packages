@@ -1,0 +1,28 @@
+# Template file for 'gojq-bin'
+pkgname=gojq-bin
+_pkgname=gojq
+version=0.12.7
+revision=1
+archs="x86_64 aarch64"
+create_wrksrc=yes
+wrksrc=gojq
+short_desc="Pure Go implementation of jq"
+maintainer="parutalker <parutalker@pm.me>"
+license="MIT"
+homepage="https://github.com/itchyny/gojq"
+
+case "$XBPS_TARGET_MACHINE" in
+		x86_64*)
+			distfiles="https://github.com/itchyny/gojq/releases/download/v${version}/${_pkgname}_v${version}_linux_amd64.tar.gz"
+			checksum="b78e43bf8d8b9e780490c455b132b8a7634d361d4939876416da32b9c2289cd8"
+			;;
+		aarch64*)
+			distfiles="https://github.com/itchyny/gojq/releases/download/v${version}/${_pkgname}_v${version}_linux_arm64.tar.gz"
+			checksum="ef5b56c916674363e3f35cc792f35e574bdc27a19323b2eedc54af3401de8c32"
+			;;
+esac
+
+do_install() {
+	cd ${_pkgname}_v${version}_linux_*
+	vbin gojq
+}
