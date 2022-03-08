@@ -1,5 +1,5 @@
-# Template file for 'mpv-vp'
-pkgname=mpv-vp
+# Template file for 'mpv-vs'
+pkgname=mpv-vs
 _pkgname=mpv
 version=0.34.1
 revision=2
@@ -58,7 +58,7 @@ pre_configure() {
 	python3 bootstrap.py
 }
 
-mpv-vp-devel_package() {
+mpv-vs-devel_package() {
 	depends="${sourcepkg}>=${version}_${revision}"
 	short_desc+=" - development files"
 	pkg_install() {
