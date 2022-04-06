@@ -1,6 +1,6 @@
 # Template file for 'ytdl-patched-git'
 pkgname=ytdl-patched-git
-version=2022.03
+version=2022.04
 revision=1
 wrksrc="$pkgname"
 build_style=python3-module
@@ -16,11 +16,6 @@ changelog="https://raw.githubusercontent.com/yt-dlp/yt-dlp/master/Changelog.md"
 do_fetch() {
 	msg_normal "Fetching source from git repo"
 	git clone --depth 1 https://github.com/ytdl-patched/ytdl-patched $wrksrc
-}
-
-pre_configure(){
-	cp -f ${FILESDIR}/viu_ott_new.py yt_dlp/extractor/
-	sed -i 's/from .viu import/from .viu_ott_new import/g;/ViuIE,/d;s/ViuPlaylistIE/ViuOTTNewIE/g;s/ViuOTTIE/ViuOTTNewPlaylistIE/g' yt_dlp/extractor/extractors.py
 }
 
 do_check() {
