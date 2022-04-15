@@ -1,7 +1,7 @@
 # Template file for 'librewolf-bin'
 pkgname=librewolf-bin
 _pkgname=librewolf
-version=97.0.1
+version=99.0.1
 revision=1
 _rev=1
 archs="x86_64"
@@ -12,7 +12,7 @@ maintainer="parutalker <93087312+parutalker@users.noreply.github.com>"
 license="MPL-2.0"
 homepage="https://librewolf.net"
 distfiles="https://gitlab.com/api/v4/projects/12829184/packages/generic/librewolf/${version}-${_rev}/LibreWolf-${version}-${_rev}.${archs}.tar.bz2"
-checksum=7a7185f11e7cfb33287dd5f1ddf7425825dd73170d971a757266a2e63fce6281
+checksum=43f35fac28f9369cee48201f4934ec5c8f490f31b43e973c3ac6815d0a68e0ba
 
 do_install() {
 	vmkdir usr/bin
