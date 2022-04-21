@@ -1,6 +1,6 @@
 # Template file for 'ytdl-patched-git'
 pkgname=ytdl-patched-git
-version=2022.03
+version=2022.04
 revision=1
 wrksrc="$pkgname"
 build_style=python3-module
@@ -25,4 +25,9 @@ pre_configure(){
 
 do_check() {
 	PYTHON=/usr/bin/python3 make offlinetest
+}
+
+post_install() {
+	ln -sfr ${DESTDIR}/usr/bin/ytdl-patched ${DESTDIR}/usr/bin/yt-dlp
+	ln -sfr ${DESTDIR}/usr/bin/ytdl-patched ${DESTDIR}/usr/bin/youtube-dl
 }
