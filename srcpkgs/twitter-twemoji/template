@@ -1,24 +1,24 @@
 # Template file for 'twitter-twemoji'
 pkgname=twitter-twemoji
-version=14.0.0
+version=14.0.2
 revision=1
 create_wrksrc=yes
-#hostmakedepends="rpmextract"
+hostmakedepends="rpmextract"
 short_desc="Twitter Emoji for everyone."
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="MIT"
 homepage="https://twemoji.twitter.com"
-#distfiles="https://kojipkgs.fedoraproject.org/packages/twitter-twemoji-fonts/${version}/2.fc35/noarch/twitter-twemoji-fonts-${version}-2.fc35.noarch.rpm"
-distfiles="http://10.0.0.26:8080/Fonts/twemoji.ttf"
-checksum=29b67a80caa92631211eebe0ef43aec2839482917b1f8b8bdba05936f10369bb
-font_dirs="/usr/share/fonts/TTF"
-skip_extraction="twemoji.ttf"
+distfiles="https://kojipkgs.fedoraproject.org/packages/twitter-twemoji-fonts/${version}/1.fc36/noarch/twitter-twemoji-fonts-${version}-1.fc36.noarch.rpm"
+#distfiles="http://10.0.0.26:8080/Fonts/twemoji.ttf"
+checksum=25104c44489bc6be69a8a7222feac63962bdc73ddf997c9816e6e36a5570a7ac
+#font_dirs="/usr/share/fonts/TTF"
+#skip_extraction="twemoji.ttf"
 
 do_install() {
-	vmkdir ${font_dirs}
+	#vmkdir ${font_dirs}
 	vmkdir usr/share/fontconfig/conf.avail
 	# Copy files
-	#vcopy "*" /
-	vcopy ${XBPS_SRCDISTDIR}/${pkgname}-${version}/twemoji.ttf ${font_dirs}
+	vcopy "*" /
+	#vcopy ${XBPS_SRCDISTDIR}/${pkgname}-${version}/twemoji.ttf ${font_dirs}
 	install -m644 ${FILESDIR}/75-twemoji.conf ${DESTDIR}/usr/share/fontconfig/conf.avail
 }
