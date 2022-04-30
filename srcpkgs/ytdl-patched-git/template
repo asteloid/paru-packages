@@ -1,6 +1,6 @@
 # Template file for 'ytdl-patched-git'
 pkgname=ytdl-patched-git
-version=2022.04
+version=2022.05.01
 revision=1
 wrksrc="$pkgname"
 build_style=python3-module
@@ -21,6 +21,10 @@ do_fetch() {
 pre_configure(){
 	cp -f ${FILESDIR}/viu_ott_new.py yt_dlp/extractor/
 	sed -i 's/from .viu import/from .viu_ott_new import/g;/ViuIE,/d;s/ViuPlaylistIE/ViuOTTNewIE/g;s/ViuOTTIE/ViuOTTNewPlaylistIE/g' yt_dlp/extractor/extractors.py
+	msg_normal "update the version number"
+	python3 devscripts/update-version.py
+	msg_normal "update the version number"
+	sed -i "s/__version__ = .*/__version__ = '${version}'/"  yt_dlp/version.py
 }
 
 do_check() {
