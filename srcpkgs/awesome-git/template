@@ -1,15 +1,13 @@
 # Template file for 'awesome-git'
 pkgname=awesome-git
-version=4.3.1315
-revision=8
-_githash=1932bd017f1fd433a74f621d9fe836e355ec054a
+version=4.3.1360.gc539e0e4
+revision=1
 create_wrksrc=yes
-build_wrksrc="awesome-${_githash}"
 build_style=cmake
 build_helper="qemu"
 configure_args="-DSYSCONFDIR=/etc"
 conf_files="/etc/xdg/awesome/rc.lua"
-hostmakedepends="ruby-asciidoctor ImageMagick pkg-config xmlto docbook-xsl asciidoc"
+hostmakedepends="ruby-asciidoctor ImageMagick pkg-config xmlto docbook-xsl asciidoc git"
 makedepends="libxcb-devel pango-devel xcb-util-devel xcb-util-image-devel
  xcb-util-keysyms-devel xcb-util-wm-devel xcb-util-cursor-devel
  startup-notification-devel imlib2-devel libxdg-basedir-devel
@@ -19,8 +17,6 @@ short_desc="Highly configurable, next gen framework window manager for X"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="http://awesomewm.org"
-distfiles="https://github.com/awesomeWM/awesome/archive/${_githash}.tar.gz"
-checksum=0e728fba925fa053559e1e04402237bd9588b38e4470503467faa0196273a933
 
 build_options="jit"
 desc_option_jit="Use LuaJIT to build Awesome"
@@ -39,6 +35,11 @@ else
 fi
 
 CFLAGS="-fcommon"
+
+do_fetch() {
+	msg_normal "Fetching source from git repo"
+	git clone --depth 1 https://github.com/awesomeWM/awesome $wrksrc
+}
 
 pre_configure() {
 	# Russian manpages fail to build.
