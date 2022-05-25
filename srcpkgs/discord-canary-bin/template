@@ -1,7 +1,7 @@
 # Template file for 'discord-canary-bin'
 pkgname=discord-canary-bin
 _pkgname=discord-canary
-version=0.0.131
+version=0.0.135
 revision=1
 archs="x86_64"
 hostmakedepends="tar"
@@ -11,7 +11,7 @@ maintainer="asteloid <astellinux@vivaldi.net>"
 license="MIT"
 homepage="https://canary.discordapp.com"
 distfiles="https://ftp5.gwdg.de/pub/linux/archlinux/community/os/x86_64/${_pkgname}-${version}-1-x86_64.pkg.tar.zst"
-checksum=b46f7cab31420b92f6e532d651c2d517fe3057b1a4618548f24e1f83245504b8
+checksum=8bf48d56d9e8d6b96e4478ed9c0514b33713aedfccaa31a72d5cbd8d84096785
 
 do_extract() {
 	bsdtar -xf ${XBPS_SRCDISTDIR}/${pkgname}-${version}/${_pkgname}-${version}-1-x86_64.pkg.tar.zst
