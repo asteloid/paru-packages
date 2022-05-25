@@ -14,7 +14,7 @@ makedepends="libxcb-devel pango-devel xcb-util-devel xcb-util-image-devel
  gdk-pixbuf-devel dbus-devel libxkbcommon-devel xcb-util-xrm-devel"
 depends="dbus-x11 pango"
 short_desc="Highly configurable, next gen framework window manager for X"
-maintainer="Orphaned <orphan@voidlinux.org>"
+maintainer="asteloid <astellinux@vivaldi.net>"
 license="GPL-2.0-or-later"
 homepage="http://awesomewm.org"
 

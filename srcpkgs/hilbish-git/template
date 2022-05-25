@@ -8,7 +8,7 @@ makedepends="readline-devel"
 #checkdepends="xvfb-run"
 depends="lua-lunacolors-git lua-succulent-git"
 short_desc="The flower shell for Lua users"
-maintainer="parutalker <93087312+parutalker@users.noreply.github.com>"
+maintainer="asteloid <astellinux@vivaldi.net>"
 license="GPL-3.0-or-later"
 homepage="https://github.com/Rosettea/Hilbish"
 

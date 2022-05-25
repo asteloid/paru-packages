@@ -5,7 +5,7 @@ version=r7.96dc95c
 revision=1
 hostmakedepends="git"
 short_desc="Lua functions and utilities for Hilbish"
-maintainer="parutalker <93087312+parutalker@users.noreply.github.com>"
+maintainer="asteloid <astellinux@vivaldi.net>"
 license="MIT"
 homepage="https://github.com/Rosettea/Succulent"
 

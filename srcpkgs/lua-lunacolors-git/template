@@ -5,7 +5,7 @@ version=r12.10c4692
 revision=1
 hostmakedepends="git"
 short_desc="ANSI colors library for Hilbish"
-maintainer="parutalker <93087312+parutalker@users.noreply.github.com>"
+maintainer="asteloid <astellinux@vivaldi.net>"
 license="BSD-3-Clause"
 homepage="https://github.com/Rosettea/Lunacolors"
 

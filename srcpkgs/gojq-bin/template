@@ -7,7 +7,7 @@ archs="x86_64 aarch64"
 create_wrksrc=yes
 wrksrc=gojq
 short_desc="Pure Go implementation of jq"
-maintainer="parutalker <parutalker@pm.me>"
+maintainer="asteloid <astellinux@vivaldi.net>"
 license="MIT"
 homepage="https://github.com/itchyny/gojq"
 

@@ -6,7 +6,7 @@ build_style=cargo
 make_install_args="--path=bin"
 hostmakedepends="openssl-devel"
 short_desc="ZippyShare direct link extractor"
-maintainer="parutalker <parutalker@pm.me>"
+maintainer="asteloid <astellinux@vivaldi.net>"
 license="MIT"
 homepage="https://github.com/scotow/zippyst"
 distfiles="https://github.com/scotow/zippyst/archive/${version}.tar.gz"
