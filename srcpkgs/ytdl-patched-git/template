@@ -1,6 +1,6 @@
 # Template file for 'ytdl-patched-git'
 pkgname=ytdl-patched-git
-version=2022.05.25
+version=2022.06.06
 revision=1
 wrksrc="$pkgname"
 build_style=python3-module
