@@ -1,9 +1,9 @@
 # Template file for 'librewolf-bin'
 pkgname=librewolf-bin
 _pkgname=librewolf
-version=101.0
+version=105.0.3
 revision=1
-_rev=2
+_rev=1
 archs="x86_64"
 create_wrksrc=yes
 depends="dbus-glib ffmpeg gtk+3 nss nspr libXt"
@@ -12,7 +12,7 @@ maintainer="asteloid <astellinux@vivaldi.net>"
 license="MPL-2.0"
 homepage="https://librewolf.net"
 distfiles="https://gitlab.com/api/v4/projects/12829184/packages/generic/librewolf/${version}-${_rev}/LibreWolf-${version}-${_rev}.${archs}.tar.bz2"
-checksum=b56ab79458ac4a382d5794713b22e4f022fe022e2b6dee5a483c7eedd09218c9
+checksum=3c088d2874551244157ba25b98dfe8f902a2bf600776de69fe4e008c253dd859
 
 do_install() {
 	vmkdir usr/bin
