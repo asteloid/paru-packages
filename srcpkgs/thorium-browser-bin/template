@@ -1,0 +1,34 @@
+# Template file for 'thorium-browser-bin'
+pkgname=thorium-browser-bin
+_pkgname=thorium-browser
+version=109.0.5361.0
+revision=1
+archs="x86_64"
+short_desc="Chromium fork focused on high performance and security."
+maintainer="asteloid <astellinux@vivaldi.net>"
+license="GPL-3.0-only"
+homepage="https://github.com/Alex313031/Thorium"
+distfiles="https://github.com/Alex313031/Thorium/releases/download/M${version}/thorium-browser_${version}_amd64.deb"
+checksum=d8c3be2827a99d1ec5bc1bc0aaaa089a2639fc3818e19d4c2870b4280ded3598
+
+do_extract() {
+	ar x "${XBPS_SRCDISTDIR}/${pkgname}-${version}/${_pkgname}_${version}_amd64.deb"
+}
+
+do_install() {
+	bsdtar xf "data.tar.xz" -C ${DESTDIR}
+
+	# Remove unused
+	rm -rf ${DESTDIR}/etc
+	rm -rf ${DESTDIR}/opt/chromium.org/thorium/cron
+	rm -rf ${DESTDIR}/usr/share/menu
+	rm -rf ${DESTDIR}/usr/share/gnome-control-center
+
+	for i in 16 32 48 64 128; do
+	    vmkdir usr/share/icons/hicolor/${i}x${i}/apps
+	    vcopy ${DESTDIR}/opt/chromium.org/thorium/product_logo_${i}.png \
+	    usr/share/icons/hicolor/${i}x${i}/apps/thorium-browser-unstable.png
+	done
+
+	vbin ${FILESDIR}/thorium-browser usr/bin/
+}
