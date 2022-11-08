@@ -1,0 +1,24 @@
+# Template file for 'gcc-latest'
+pkgname=gcc-latest
+version=13.0.0
+revision=1
+_git=20221016git6366e3e8847a
+_filename="${pkgname}_${version}-${_git}.deb"
+archs="x86_64"
+hostmakedepends="tar xz"
+short_desc="GNU Compiler Snapshots"
+maintainer="MarcoAPC <marcoaureliopc@gmail.com>"
+license="GPL-3.0-or-later"
+homepage="https://jwakely.github.io/pkg-gcc-latest/"
+distfiles="http://kayari.org/gcc-latest/${pkgname}_${version}-${_git}.deb"
+checksum=20bb6f6bcd248365912b2de820f8a403a72fa59418a1f4e37741c976d7269cd4
+nostrip=yes
+
+do_extract() {
+	mkdir -p ${DESTDIR}
+	ar x ${XBPS_SRCDISTDIR}/${pkgname}-${version}/${_filename}
+}
+
+do_install() {
+	tar xf data.tar.xz -C ${DESTDIR}
+}
