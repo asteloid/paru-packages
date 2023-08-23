@@ -1,0 +1,39 @@
+# Template file for 'visual-studio-code-bin'
+pkgname=visual-studio-code-bin
+version=1.81.1
+revision=1
+archs="x86_64 aarch64 armv7l"
+create_wrksrc=yes
+hostmakedepends="rpmextract"
+depends="alsa-lib GConf gnupg gtk+3 libnotify libsecret libXtst lsof nss xdg-utils"
+short_desc="Visual Studio Code (vscode): Editor for building and debugging modern web and cloud applications (official binary version)"
+maintainer="asteloid <astellinux@vivaldi.net>"
+license="custom:Commercial"
+homepage="https://code.visualstudio.com/"
+
+case "${XBPS_TARGET_MACHINE}" in
+	x86_64)
+			distfiles="https://packages.microsoft.com/yumrepos/vscode/Packages/c/code-1.81.1-1691620770.el7.x86_64.rpm"
+			checksum=a8453afa894f8d276af937c1bf2dc965646ed5f78c81dbe6caab053410f91484
+			;;
+	aarch64)
+			distfiles="https://packages.microsoft.com/yumrepos/vscode/Packages/c/code-1.81.1-1691620951.el7.aarch64.rpm"
+			checksum=331e39757e09d5570a7255685e985b7da08da6a177bd11a4604bfbbaabd82a9b
+			;;
+	armv7l)
+			distfiles="https://packages.microsoft.com/yumrepos/vscode/Packages/c/code-1.81.1-1691620095.el7.armv7hl.rpm"
+			checksum=0da552e40d427f9c9ea16a03916e1d33e66e8ea8a6ae842c13a6f19e7018dfaa
+			;;
+	*) broken="package doesn't provide build function for other architectures" ;;
+esac
+
+do_install() {
+	vmkdir /usr/bin
+	vmkdir /opt
+	# Copy files
+	vcopy "*" /
+	mv ${DESTDIR}/usr/share/code ${DESTDIR}/opt/
+	ln -sf /opt/code/bin/code ${DESTDIR}/usr/bin/code
+	vsed -i 's,Exec=/usr/share/code/code,Exec=/opt/code/code,g' ${PKGDESTDIR}/usr/share/applications/code.desktop
+	vsed -i 's,Exec=/usr/share/code/code,Exec=/opt/code/code,g' ${PKGDESTDIR}/usr/share/applications/code-url-handler.desktop
+}
